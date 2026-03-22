@@ -1,38 +1,16 @@
-import Link from "next/link";
-import AdSlot from "@/components/AdSlot";
+// page for showing all the jobs avilable to apply
 import prisma from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
+import Link from "next/link";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  const jobs = await prisma.job.findMany({
+export default async function JobsPage() {
+    const jobs = await prisma.job.findMany({
     orderBy: { createdAt: "desc" },
     take: 20,
   });
-
-  return (
-    <div className="space-y-8">
-      <section className="text-center py-12 md:py-20 bg-white rounded-2xl shadow-sm border border-slate-100 px-4">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-          Find Your Dream <span className="text-blue-600">Govt & Private</span> Job
-        </h1>
-        <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-          The most up-to-date and reliable source for recruitment notifications, admit cards, and results.
-        </p>
-      </section>
-
-      <AdSlot className="my-8" />
-
-      <section>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-slate-800">Latest Notifications</h2>
-          <span className="text-sm font-medium bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
-            {jobs.length} Jobs
-          </span>
-        </div>
-
-        {jobs.length === 0 ? (
+    return (
+        <div>
+            {jobs.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">
             <p className="text-slate-500">No jobs posted yet. Check back soon!</p>
           </div>
@@ -66,7 +44,6 @@ export default async function Home() {
             ))}
           </div>
         )}
-      </section>
-    </div>
-  );
+        </div>
+    );
 }
