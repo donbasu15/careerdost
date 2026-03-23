@@ -15,10 +15,10 @@ export default async function Home() {
     <div className="space-y-8">
       <section className="text-center py-12 md:py-20 bg-white rounded-2xl shadow-sm border border-slate-100 px-4">
         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
-          Find Your Dream <span className="text-blue-600">Govt & Private</span> Job
+          Find Your Dream <span className="text-blue-600">Govt & Private</span> Job on CareerDost
         </h1>
         <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-          The most up-to-date and reliable source for recruitment notifications, admit cards, and results.
+          Welcome to <strong className="font-semibold text-slate-800">CareerDost</strong> (Career Dost), the most up-to-date and reliable job portal for government recruitment notifications, private jobs, admit cards, and results.
         </p>
       </section>
 

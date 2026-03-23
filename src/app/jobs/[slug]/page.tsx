@@ -14,9 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const job = await prisma.job.findUnique({ where: { slug } });
   if (!job) return { title: 'Job Not Found' };
   
+  const description = job.eligibility.substring(0, 150) + "...";
   return {
-    title: `${job.title} | ${job.organization}`,
-    description: job.eligibility.substring(0, 160) + "...",
+    title: `${job.title} | ${job.organization} | CareerDost`,
+    description: `Career Dost updates: ${description}`,
+    keywords: ["CareerDost", "career dost", job.category, job.organization, "government jobs", "sarkari naukri", "recruitment"],
+    openGraph: {
+      title: `${job.title} | ${job.organization} | CareerDost`,
+      description: `Career Dost updates: ${description}`,
+      type: "article",
+    },
   };
 }
 
@@ -52,6 +59,10 @@ export default async function JobPage({ params }: { params: Promise<{ slug: stri
     "hiringOrganization": {
       "@type": "Organization",
       "name": job.organization,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CareerDost"
     },
     "jobLocation": {
       "@type": "Place",
