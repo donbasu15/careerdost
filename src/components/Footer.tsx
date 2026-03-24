@@ -1,7 +1,10 @@
+import Image from 'next/image';
+
 export default function Footer() {
   return (
     <footer className="w-full border-t border-slate-200 bg-white py-8 mt-12">
-      <div className="container mx-auto px-4 sm:px-6 text-center text-sm text-slate-500">
+      <div className="container mx-auto px-4 sm:px-6 text-center text-sm text-slate-500 flex flex-col items-center">
+        <Image src="/logo.png" alt="CareerDost Logo" width={48} height={48} className="h-12 w-auto mb-4" />
         <p>&copy; {new Date().getFullYear()} CareerDost. All rights reserved.</p>
         <div className="mt-4 flex justify-center space-x-6">
           <a href="#" className="hover:text-slate-900">Privacy Policy</a>
