@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -6,10 +7,10 @@ export default function Footer() {
       <div className="container mx-auto px-4 sm:px-6 text-center text-sm text-slate-500 flex flex-col items-center">
         <Image src="/logo.png" alt="CareerDost Logo" width={48} height={48} className="h-12 w-auto mb-4" />
         <p>&copy; {new Date().getFullYear()} CareerDost. All rights reserved.</p>
-        <div className="mt-4 flex justify-center space-x-6">
-          <a href="#" className="hover:text-slate-900">Privacy Policy</a>
-          <a href="#" className="hover:text-slate-900">Terms of Service</a>
-          <a href="#" className="hover:text-slate-900">Contact Us</a>
+        <div className="mt-4 flex flex-wrap justify-center gap-4 sm:gap-6 text-slate-500">
+          <Link href="/about-us" className="hover:text-slate-900 transition-colors">About Us</Link>
+          <Link href="/privacy-policy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
+          <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Contact Us</Link>
         </div>
       </div>
     </footer>

@@ -8,6 +8,10 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://careerdost.online"),
+  alternates: {
+    canonical: "/",
+  },
   title: "CareerDost - Latest Govt & Private Jobs | Career Dost",
   description: "Find the latest Govt and Private jobs on CareerDost. Get reliable updates on recruitment notifications, admit cards, results, and career guidance at Career Dost.",
   keywords: ["CareerDost", "career dost", "job portal", "government jobs", "sarkari naukri", "private jobs", "latest jobs", "recruitment", "admit card", "results"],
