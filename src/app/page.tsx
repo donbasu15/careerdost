@@ -26,7 +26,7 @@ export default async function Home() {
 
       <section>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-slate-800">Latest Notifications</h2>
+          <h2 className="text-2xl font-bold text-slate-800 text-white">Latest Jobs Notifications</h2>
           <span className="text-sm font-medium bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
             {jobs.length} Jobs
           </span>

@@ -16,7 +16,7 @@ export default function AboutUs() {
 
       <div className="prose prose-slate max-w-none space-y-6">
         <p className="text-md text-slate-700">
-          Welcome to <strong className="font-semibold text-blue-600">CareerDost</strong>, your true friend and guide in your career journey. We are dedicated to providing you the very best platform for finding the latest government and private job notifications, results, admit cards, and career guidance.
+          Welcome to <strong className="font-semibold text-blue-600">CareerDost</strong>, your true friend and guide in your career journey. We are dedicated to providing you the very best platform for finding the latest government and private job notifications, scholarships, results, admit cards, and career guidance.
         </p>
 
         <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">Our Mission</h2>
@@ -26,7 +26,7 @@ export default function AboutUs() {
 
         <h2 className="text-2xl font-bold text-slate-800 mt-8 mb-4">What We Do</h2>
         <ul className="list-disc pl-6 space-y-2 text-md text-slate-700">
-          <li><strong>Latest Job Notifications:</strong> We update our platform daily with the newest government (Sarkari) and private sector job opportunities.</li>
+          <li><strong>Latest Job & Scholarship Notifications:</strong> We update our platform daily with the newest government (Sarkari) and private sector job opportunities, as well as the best scholarship programs to support your education.</li>
           <li><strong>Admit Cards & Results:</strong> Quick links to download your exam admit cards and check your results without the hassle.</li>
           <li><strong>Accuracy & Trust:</strong> We strive to provide 100% verified and authentic information directly from official sources.</li>
         </ul>

@@ -24,3 +24,16 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Force wrapping for long text and links in rich-text content to prevent horizontal scroll */
+.prose {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+.prose a {
+  word-break: break-all !important;
+}
+.prose * {
+  max-width: 100%;
+}

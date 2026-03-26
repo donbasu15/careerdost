@@ -10,6 +10,7 @@ export default function Footer() {
         <div className="mt-4 flex flex-wrap justify-center gap-4 sm:gap-6 text-slate-500">
           <Link href="/about-us" className="hover:text-slate-900 transition-colors">About Us</Link>
           <Link href="/privacy-policy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
+          <Link href="/terms-and-conditions" className="hover:text-slate-900 transition-colors">Terms & Conditions</Link>
           <Link href="/contact-us" className="hover:text-slate-900 transition-colors">Contact Us</Link>
         </div>
       </div>

@@ -10,6 +10,7 @@ export default async function JobsPage() {
   });
     return (
         <div>
+          <h1 className="text-3xl font-extrabold text-slate-900 mb-8 border-b pb-4 text-white">Latest Jobs</h1>
             {jobs.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">
             <p className="text-slate-500">No jobs posted yet. Check back soon!</p>

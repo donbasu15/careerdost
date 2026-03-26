@@ -35,6 +35,9 @@ export default async function JobPage({ params }: { params: Promise<{ slug: stri
 
   if (!job) return notFound();
 
+  // Helper to remove nasty non-breaking spaces from copy-pasting 
+  const cleanHtml = (html: string) => html ? html.replace(/&nbsp;/g, ' ') : '';
+
   const daysRemaining = differenceInDays(new Date(job.endDate), new Date());
   
   const relatedJobs = await prisma.job.findMany({
@@ -126,30 +129,22 @@ export default async function JobPage({ params }: { params: Promise<{ slug: stri
 
           <section>
             <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Eligibility Criteria</h2>
-            <div className="p-4 bg-slate-50 rounded-lg text-slate-700 prose prose-slate max-w-none">
-              <ReactMarkdown>{job.eligibility}</ReactMarkdown>
-            </div>
+            <div className="p-4 bg-slate-50 rounded-lg text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(job.eligibility) }} />
           </section>
 
           <section>
             <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Selection Process</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none">
-              <ReactMarkdown>{job.selectionProcess}</ReactMarkdown>
-            </div>
+            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(job.selectionProcess) }} />
           </section>
 
           <section>
             <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">How to Apply</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none">
-              <ReactMarkdown>{job.howToApply}</ReactMarkdown>
-            </div>
+            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(job.howToApply) }} />
           </section>
 
           <section>
             <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Detailed Notification</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none">
-              <ReactMarkdown>{job.description}</ReactMarkdown>
-            </div>
+            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(job.description) }} />
           </section>
         </div>
       </div>

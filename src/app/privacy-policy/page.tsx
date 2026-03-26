@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
 
       <div className="prose prose-slate max-w-none space-y-6">
         <p className="text-md text-slate-700">
-          At CareerDost, accessible from <a href="https://careerdost.online" className="text-blue-600 hover:underline">https://careerdost.online</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by CareerDost and how we use it.
+          At CareerDost, accessible from <a href="https://careerdost.online" className="text-blue-600 hover:underline">https://careerdost.online</a>, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by CareerDost (including our jobs and scholarships sections) and how we use it.
         </p>
 
         <p className="text-md text-slate-700">

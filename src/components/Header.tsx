@@ -12,6 +12,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center space-x-6">
           <Link href="/" className="text-sm font-medium text-slate-600 hover:text-slate-900">Home</Link>
           <Link href="/jobs" className="text-sm font-medium text-slate-600 hover:text-slate-900">All Jobs</Link>
+          <Link href="/scholarships" className="text-sm font-medium text-slate-600 hover:text-slate-900">Scholarships</Link>
           {/* <Link href="/admin" className="text-sm font-medium text-slate-600 hover:text-slate-900">Admin</Link> */}
         </nav>
       </div>
