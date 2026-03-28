@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma";
 import ScholarshipCard from "@/components/ScholarshipCard";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Scholarships | CareerDost",
   description: "Find the best scholarships to support your education and career goals.",

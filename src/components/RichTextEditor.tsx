@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-quill-new/dist/quill.snow.css';
 
@@ -16,6 +16,10 @@ interface RichTextEditorProps {
 
 export default function RichTextEditor({ name, initialValue = "", placeholder }: RichTextEditorProps) {
   const [value, setValue] = useState(initialValue);
+  
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
   
   const modules = {
     toolbar: [

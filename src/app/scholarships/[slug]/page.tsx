@@ -35,9 +35,7 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
 
   if (!scholarship || !scholarship.isActive) return notFound();
 
-  // Helper to remove nasty non-breaking spaces from copy-pasting
   const cleanHtml = (html: string) => html ? html.replace(/&nbsp;/g, ' ') : '';
-
   const daysRemaining = differenceInDays(new Date(scholarship.deadline), new Date());
   
   const relatedScholarships = await prisma.scholarship.findMany({
@@ -46,15 +44,24 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
     orderBy: { createdAt: "desc" }
   });
 
+  // --- RICH TEXT STYLING (The Fix) ---
+  const richTextStyles = `
+    text-slate-700 max-w-none break-words
+    [&_p]:mb-4 
+    [&_ul]:list-disc [&_ul]:ml-6 [&_ul]:mb-4 
+    [&_ol]:list-decimal [&_ol]:ml-6 [&_ol]:mb-4 
+    [&_li]:mb-1
+    [&_table]:w-full [&_table]:border-collapse [&_table]:border [&_table]:border-slate-300 [&_table]:my-6
+    [&_th]:border [&_th]:border-slate-300 [&_th]:p-3 [&_th]:bg-slate-100 [&_th]:text-left [&_th]:font-bold
+    [&_td]:border [&_td]:border-slate-300 [&_td]:p-3 [&_td]:align-top
+  `;
+
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "EducationalOccupationalProgram",
     "name": scholarship.title,
     "description": scholarship.description,
-    "provider": {
-      "@type": "Organization",
-      "name": scholarship.provider,
-    },
+    "provider": { "@type": "Organization", "name": scholarship.provider },
     "category": scholarship.category,
     "applicationDeadline": scholarship.deadline.toISOString(),
     "financialAidProvided": scholarship.amount,
@@ -62,40 +69,30 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       
       <div className="flex-1 space-y-8">
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 border-l-4 border-l-green-500">
           <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-            <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-200">
-                {scholarship.category}
-              </span>
-            </div>
+            <span className="text-xs font-bold uppercase tracking-wider text-green-700 bg-green-50 px-3 py-1 rounded-full border border-green-200">
+              {scholarship.category}
+            </span>
             {daysRemaining >= 0 ? (
                <span className="text-sm font-semibold bg-green-100 text-green-800 px-3 py-1 rounded-full flex items-center gap-1">
-                 <CalendarIcon className="w-4 h-4" />
-                 {daysRemaining} Days Remaining
+                 <CalendarIcon className="w-4 h-4" /> {daysRemaining} Days Remaining
                </span>
             ) : (
-               <span className="text-sm font-semibold bg-red-100 text-red-700 px-3 py-1 rounded-full flex items-center gap-1">
-                 Expired
-               </span>
+               <span className="text-sm font-semibold bg-red-100 text-red-700 px-3 py-1 rounded-full flex items-center gap-1">Expired</span>
             )}
           </div>
           
           <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{scholarship.title}</h1>
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center text-slate-600 gap-2 font-medium bg-slate-50 inline-flex px-4 py-2 rounded-lg">
-              <BuildingIcon className="w-5 h-5 text-slate-400" />
-              {scholarship.provider}
+              <BuildingIcon className="w-5 h-5 text-slate-400" /> {scholarship.provider}
             </div>
             <div className="flex items-center text-green-700 gap-2 font-bold bg-green-50 inline-flex px-4 py-2 rounded-lg border border-green-200">
-              <GraduationCapIcon className="w-5 h-5 text-green-600" />
-              {scholarship.amount}
+              <GraduationCapIcon className="w-5 h-5 text-green-600" /> {scholarship.amount}
             </div>
           </div>
         </div>
@@ -104,7 +101,7 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
         
         <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200 space-y-8">
           <section>
-            <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Important Dates</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Important Dates</h2>
             <ul className="space-y-3 font-medium text-slate-700">
               <li className="flex justify-between items-center py-2 border-b border-slate-100">
                 <span>Application Start</span>
@@ -118,23 +115,23 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
           </section>
 
           <section>
-            <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">About the Scholarship</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.description) }} />
+            <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">About the Scholarship</h2>
+            <div className={richTextStyles} dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.description) }} />
           </section>
 
           <section>
-            <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Eligibility Criteria</h2>
-            <div className="p-4 bg-green-50 border border-green-100 rounded-lg text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.eligibilityCriteria) }} />
+            <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Eligibility Criteria</h2>
+            <div className={`p-4 bg-green-50 border border-green-100 rounded-lg ${richTextStyles}`} dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.eligibilityCriteria) }} />
           </section>
 
           <section>
-            <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">Benefits</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.benefits) }} />
+            <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Benefits</h2>
+            <div className={richTextStyles} dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.benefits) }} />
           </section>
 
           <section>
-            <h2 className="flex items-center text-xl font-bold text-slate-900 mb-4 border-b pb-2">How to Apply</h2>
-            <div className="text-slate-700 prose prose-slate max-w-none break-words" dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.howToApply) }} />
+            <h2 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">How to Apply</h2>
+            <div className={richTextStyles} dangerouslySetInnerHTML={{ __html: cleanHtml(scholarship.howToApply) }} />
           </section>
         </div>
       </div>
@@ -142,7 +139,6 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
       <div className="lg:w-80 space-y-6">
         <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-2xl shadow-sm border border-green-200 lg:sticky lg:top-24">
           <h3 className="text-xl font-black text-green-900 mb-6 border-b border-green-200 pb-4">Quick Info</h3>
-          
           <div className="space-y-5 mb-8">
             <div>
               <p className="text-xs text-green-700 uppercase tracking-widest font-bold mb-1">Amount</p>
@@ -155,18 +151,9 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
               </p>
             </div>
           </div>
-
-          <a
-            href={scholarship.applyLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg"
-          >
+          <a href={scholarship.applyLink} target="_blank" rel="noopener noreferrer" className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg">
             Apply Now <ExternalLinkIcon className="w-5 h-5" />
           </a>
-          <p className="text-xs text-center text-green-700 mt-4 opacity-80">
-            You will be redirected to the provider's website.
-          </p>
         </div>
 
         <AdSlot />
@@ -177,9 +164,7 @@ export default async function ScholarshipPage({ params }: { params: Promise<{ sl
             <div className="space-y-4">
               {relatedScholarships.map((rs) => (
                 <Link key={rs.id} href={`/scholarships/${rs.slug}`} className="block group border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                  <h4 className="text-sm font-bold text-slate-800 group-hover:text-green-600 line-clamp-2">
-                    {rs.title}
-                  </h4>
+                  <h4 className="text-sm font-bold text-slate-800 group-hover:text-green-600 line-clamp-2">{rs.title}</h4>
                   <div className="text-xs text-slate-500 mt-1">{rs.provider}</div>
                 </Link>
               ))}
