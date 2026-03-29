@@ -33,9 +33,9 @@ export default function ContactUs() {
             <p className="text-slate-600 mb-4">Stay updated with the latest alerts on our social media channels.</p>
             <div className="flex gap-4">
                {/* Add social links here in the future if applicable */}
-               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium">Twitter</span>
-               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium">Facebook</span>
-               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium">Telegram</span>
+               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium" ><a href="https://twitter.com/careerdost26" target="_blank">Twitter</a></span>
+               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium"><a href="https://www.facebook.com/profile.php?id=61575428664380" target="_blank">Facebook</a></span>
+               <span className="bg-slate-200 text-slate-600 px-3 py-1 rounded text-sm font-medium"><a href="https://t.me/careerdost26" target="_blank">Telegram</a></span>
             </div>
           </div>
         </div>
