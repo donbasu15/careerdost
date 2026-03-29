@@ -52,8 +52,11 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error("Error creating job:", error);
     if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: (error as z.ZodError).errors }, { status: 400 });
-    }
+  return NextResponse.json(
+    { error: error.flatten().fieldErrors }, 
+    { status: 400 }
+  );
+}
     return NextResponse.json(
       { error: "Failed to create job post." },
       { status: 500 }
