@@ -2,7 +2,7 @@
 import prisma from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
-
+import AdSlot from "@/components/AdSlot";
 export const dynamic = "force-dynamic";
 
 export default async function JobsPage() {
@@ -12,6 +12,7 @@ export default async function JobsPage() {
   });
     return (
         <div>
+          <AdSlot id="ad-slot-1"/>
           <h1 className="text-3xl font-extrabold text-slate-900 mb-8 border-b pb-4 text-white">Latest Jobs</h1>
             {jobs.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">

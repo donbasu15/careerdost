@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import ScholarshipCard from "@/components/ScholarshipCard";
-
+import AdSlot from "@/components/AdSlot";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
@@ -17,6 +17,7 @@ export default async function ScholarshipsPage() {
 
   return (
     <div>
+      <AdSlot id="ad-slot-2"/>
       <h1 className="text-3xl font-extrabold text-slate-900 mb-8 border-b pb-4 text-white">Latest Scholarships</h1>
       {scholarships.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl border border-dashed border-slate-300">
