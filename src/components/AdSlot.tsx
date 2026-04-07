@@ -27,14 +27,6 @@ export default function AdSlot({ className = "", id }: AdSlotProps) {
         The external AdSense script (adsbygoogle.js) is already loaded globally 
         via src/app/layout.tsx to optimize performance. 
       */}
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6427408126692725"
-        data-ad-slot="5510408861"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
     </div>
   );
 }

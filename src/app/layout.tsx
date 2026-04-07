@@ -37,10 +37,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="google-adsense-account" content="ca-pub-6427408126692725"></meta>
         <meta name="google-site-verification" content="GV0iYH6r31N74e3g4ehd0wQVa1tqRH9Q7GaIUXFu6KM" />
       </head>
-      {/* Bidvertiser2104333 */}
       <body className={`${inter.className} min-h-screen bg-slate-50 flex flex-col text-slate-900`}>
         <Header />
         <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
